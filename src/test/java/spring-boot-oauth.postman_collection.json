@@ -1,0 +1,157 @@
+{
+	"info": {
+		"_postman_id": "eea11cd8-61b1-43e7-8c05-190fccee1e14",
+		"name": "spring-boot-oauth",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9165319"
+	},
+	"item": [
+		{
+			"name": "/oauth/token",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "spring-security-oauth2-read-write-client-password1234",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "spring-security-oauth2-read-write-client",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "admin1234",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "spring-security-oauth2-read-write-client",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{server_url}}/oauth/token",
+					"host": [
+						"{{server_url}}"
+					],
+					"path": [
+						"oauth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/oauth/check_token",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "spring-security-oauth2-read-write-client-password1234",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "spring-security-oauth2-read-write-client",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server_url}}/oauth/check_token?token=d04c852a-ed1e-491a-83df-ac4a16904b16",
+					"host": [
+						"{{server_url}}"
+					],
+					"path": [
+						"oauth",
+						"check_token"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "d04c852a-ed1e-491a-83df-ac4a16904b16"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/secured/company",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "Bearer d04c852a-ed1e-491a-83df-ac4a16904b16"
+					}
+				],
+				"url": {
+					"raw": "{{server_url}}/secured/company",
+					"host": [
+						"{{server_url}}"
+					],
+					"path": [
+						"secured",
+						"company"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "server_url",
+			"value": "server_url",
+			"type": "string"
+		}
+	]
+}
